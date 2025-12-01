@@ -1,0 +1,28 @@
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 600px;
+}
+.form-row {
+  display: grid;
+  gap: .25rem;
+}
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+:host ::ng-deep .form-row .p-password {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+:host ::ng-deep .form-row .p-password .p-inputtext {
+  flex: 1;
+}
+
+:host ::ng-deep .form-row .p-password .p-password-toggle-icon {
+  margin-left: .5rem;
+}

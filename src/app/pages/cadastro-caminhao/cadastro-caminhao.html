@@ -1,0 +1,39 @@
+<p-toast></p-toast>
+<div class="form-grid">
+
+  <div class="form-row">
+    <label for="placa">Placa</label>
+    <input pInputText id="placa" [(ngModel)]="caminhao.placa" placeholder="Exemplo: AAA1A11"/>
+  </div>
+
+  <div class="form-row">
+    <p-dropdown
+      optionLabel="nome"
+      optionValue="nome"
+      [(ngModel)]="motorista.nome"
+      placeholder="Selecione um motorista">
+    </p-dropdown>
+  </div>
+
+  <div class="form-row">
+    <label for="capacidade">Capacidade</label>
+    <input pInputText id="capacidade" [(ngModel)]="caminhao.capacidade" placeholder="Exemplo: 1000kg"/>
+  </div>
+
+  <div class="form-row">
+    <div *ngFor="let r of residuos" class="flex align-items-center gap-2">
+      <p-checkbox
+        name="residuos"
+        [value]="r"
+        [(ngModel)]="caminhao.tipoResiduo"
+        [inputId]="r">
+      </p-checkbox>
+      <label [for]="r">{{ r }}</label>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button pButton label="Cadastrar" (click)="cadastrar()" [disabled]="carregando()"></button>
+  </div>
+
+</div>
