@@ -36,6 +36,7 @@ export class CadastroMotorista {
 
   cadastrar(){
     this.service.criar(this.motorista).subscribe();
+    console.log(this.motorista)
   }
 
 }

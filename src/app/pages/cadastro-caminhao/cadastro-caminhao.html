@@ -1,4 +1,5 @@
 <p-toast></p-toast>
+
 <div class="form-grid">
 
   <div class="form-row">
@@ -7,12 +8,16 @@
   </div>
 
   <div class="form-row">
-    <p-dropdown
+    <label>Motorista:</label>
+    <p-autocomplete
+      [(ngModel)]="motoristaSelecionado"
+      [suggestions]="motoristasFiltrados"
+      (completeMethod)="filtrarMotoristas($event)"
       optionLabel="nome"
-      optionValue="nome"
-      [(ngModel)]="motorista.nome"
-      placeholder="Selecione um motorista">
-    </p-dropdown>
+      [dropdown]="true"
+      placeholder="Selecione um bairro"
+      class="w-full">
+    </p-autocomplete>
   </div>
 
   <div class="form-row">
@@ -21,13 +26,12 @@
   </div>
 
   <div class="form-row">
-    <div *ngFor="let r of residuos" class="flex align-items-center gap-2">
+    <div *ngFor="let r of tipos" class="flex align-items-center gap-2">
       <p-checkbox
-        name="residuos"
         [value]="r"
-        [(ngModel)]="caminhao.tipoResiduo"
-        [inputId]="r">
-      </p-checkbox>
+        [(ngModel)]="caminhao.tiposResiduos"
+        [inputId]="r.nome"
+      ></p-checkbox>
       <label [for]="r">{{ r }}</label>
     </div>
   </div>

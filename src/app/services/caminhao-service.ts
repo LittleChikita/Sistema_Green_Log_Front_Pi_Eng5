@@ -4,16 +4,26 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {CaminhaoRequest} from '../models/CaminhaoRequest';
 import {CaminhaoResponse} from '../models/CaminhaoResponse';
+import {TipoResiduo} from '../models/TipoResiduo';
+import {MotoristaResponse} from '../models/MotoristaResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CaminhaoService {
-  private readonly baseUrl = `${environment.apiUrl}/cadastrar_caminhao`;
+  private readonly baseUrl = `${environment.apiUrl}/cadastrarcaminhao`;
 
   loading = signal(false);
 
   constructor(private http:HttpClient) {
+  }
+
+  getTiposResiduo(): Observable<TipoResiduo[]> {
+    return this.http.get<TipoResiduo[]>(`${environment.apiUrl}/cadastrarPontoColeta/tipos_residuo`);
+  }
+
+  getMotoristas(): Observable<MotoristaResponse[]> {
+    return this.http.get<MotoristaResponse[]>(`${environment.apiUrl}/motoristas`);
   }
 
   criar(req: CaminhaoRequest): Observable<CaminhaoResponse>{

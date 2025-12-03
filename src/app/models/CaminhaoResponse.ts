@@ -1,8 +1,7 @@
 export interface CaminhaoResponse{
   id: number;
   placa: string;
-  idMotorista: number;
-  nomeMotorista: string;
+  motorista_id: number;
   capacidade: number;
-  tipoResiduo: string[];
+  tiposResiduos: string[];
 }

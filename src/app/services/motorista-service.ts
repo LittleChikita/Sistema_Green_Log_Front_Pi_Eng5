@@ -10,7 +10,7 @@ import {MotoristaResponse} from '../models/MotoristaResponse';
 })
 export class MotoristaService {
 
-  private readonly baseUrl = `${environment.apiUrl}/cadastrar_motorista`;
+  private readonly baseUrl = `${environment.apiUrl}/motoristas`;
 
   loading = signal(false);
 

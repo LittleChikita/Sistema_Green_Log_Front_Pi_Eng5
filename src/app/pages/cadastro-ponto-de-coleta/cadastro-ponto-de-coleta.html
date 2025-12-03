@@ -1,0 +1,58 @@
+<p-toast></p-toast>
+
+<div class="form-grid">
+
+  <div class="form-row">
+    <label>Bairro:</label>
+    <p-autocomplete
+      [(ngModel)]="bairroSelecionado"
+      [suggestions]="bairrosFiltrados"
+      (completeMethod)="filtrarBairros($event)"
+      optionLabel="nome"
+      [dropdown]="true"
+      placeholder="Selecione um bairro"
+      pClass="w-full">
+    </p-autocomplete>
+  </div>
+
+  <div class="form-row">
+    <label for="nome">Nome do Ponto de Coleta:</label>
+    <input pInputText id="nome" [(ngModel)]="pontoDeColeta.nome" placeholder=""/>
+  </div>
+
+  <div class="form-row">
+    <label for="nomeResponsavel">Nome do Responsavel Pelo Ponto de Coleta:</label>
+    <input pInputText id="nomeResponsavel" [(ngModel)]="pontoDeColeta.responsavel" placeholder=""/>
+  </div>
+
+  <div class="form-row">
+    <label for="telefoneResponsavel">Telefone do Ponto Responsavel pelo Ponto de Coleta:</label>
+    <input pInputText id="telefoneResponsavel" [(ngModel)]="pontoDeColeta.telefoneResponsavel" placeholder="(00) 90000-0000"/>
+  </div>
+
+  <div class="form-row">
+    <label for="emailResponsavel">Email do Responsavel pelo Ponto de Coleta</label>
+    <input pInputText id="emailResponsavel" [(ngModel)]="pontoDeColeta.emailResponsavel" placeholder="exemplo@dominio.com"/>
+  </div>
+
+  <div class="form-row">
+    <label for="endereco">Endereço</label>
+    <input pInputText id="endereco" [(ngModel)]="pontoDeColeta.endereco" placeholder="Rua x,Qd x,lt x"/>
+  </div>
+
+  <div class="form-row">
+    <div *ngFor="let r of tipos" class="flex align-items-center gap-2">
+      <p-checkbox
+        [value]="r"
+        [(ngModel)]="pontoDeColeta.tiposResiduos"
+        [inputId]="r.nome"
+      ></p-checkbox>
+      <label [for]="r">{{ r }}</label>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button pButton label="Cadastrar" (click)="cadastrar()" [disabled]="carregando()"></button>
+  </div>
+
+</div>
