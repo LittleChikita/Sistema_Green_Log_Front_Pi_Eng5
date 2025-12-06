@@ -1,15 +1,35 @@
 <p-toast></p-toast>
-<div class="form-grid">
+<div class="form-container">
 
-  <div class="form-row">
+  <div class="form-section">
+    <label>Escolha o tipo de residuo</label>
     <p-select
       [options]="residuos"
       [(ngModel)]="residuoSelecionado"
       optionLabel="nome"
       placeholder="Selecione um tipo de resíduo"
       class="w-full"
-      (onChange)="filtrarPontos()"
+      (onChange)="aoMudarResiduo()"
     ></p-select>
+  </div>
+
+  <div class="form-section">
+    <label for="nome">Nome da Rota:</label>
+    <input pInputText id="nome" [(ngModel)]="rota.nome" placeholder=""/>
+  </div>
+
+  <div class="form-section">
+    <label>Caminhão:</label>
+    <p-autocomplete
+      [(ngModel)]="caminhaoSelecionado"
+      [suggestions]="caminhoesFiltrados"
+      (completeMethod)="filtrarCaminhoes()"
+      optionLabel="placa"
+      [dropdown]="true"
+      placeholder="Selecione um caminhão"
+      class="w-full"
+      [disabled]="!residuoSelecionado">
+    </p-autocomplete>
   </div>
 
   <p-table
@@ -44,7 +64,6 @@
 
   <div class="actions">
     <button pButton label="Cadastrar" (click)="cadastrar()" [disabled]="carregando()"></button>
-    <button pButton label="Gerar Rota" (click)="gerarRota()"></button>
   </div>
 
 </div>
