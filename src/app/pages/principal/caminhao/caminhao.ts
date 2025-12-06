@@ -5,20 +5,27 @@ import {TableModule} from 'primeng/table';
 import {CaminhaoResponse} from '../../../models/CaminhaoResponse';
 import {ItinerarioService} from '../../../services/itinerario-service';
 import {CaminhaoService} from '../../../services/caminhao-service';
+import {Toolbar} from 'primeng/toolbar';
+import {Button} from 'primeng/button';
+import {CaminhaoRequest} from '../../../models/CaminhaoRequest';
 
 @Component({
   selector: 'app-caminhao',
   imports: [
     Toast,
     TableModule,
+    Toolbar,
+    Button,
   ],
   providers: [MessageService],
   templateUrl: './caminhao.html',
-  styleUrl: './caminhao.css',
+  styleUrl: './caminhao.scss',
 })
 export class Caminhao implements OnInit{
 
   carregando = this.service.loading;
+
+  caminhao: CaminhaoRequest;
 
   caminhoes: CaminhaoResponse[]=[];
   caminhaoSelecionado!: CaminhaoResponse;
@@ -35,6 +42,14 @@ export class Caminhao implements OnInit{
         console.log("Caminhoes recebidos:", car);
       },
     });
+
+  }
+
+  openNovo(){
+    this.
+  }
+
+  inativarCaminhao(){
 
   }
 

@@ -3,14 +3,27 @@
 <div>
 
   <div>
-    <p-table [value]="caminhoes"
-             [paginator]="true"
-             [rows]="5"
-             [rowsPerPageOptions]="[5, 10, 20]"
-             selectionMode="single"
-             [(selection)]="caminhaoSelecionado"
-             dataKey="id"
-             [tableStyle]="{ 'min-width': '50rem' }">
+    <p-toolbar class="mb-6">
+      <ng-template #start>
+        <p-button class="mr-2" label="New" icon="pi pi-plus" (onClick)="openNovo()">  </p-button>
+        <p-button severity="danger" label="Delete" icon="pi pi-trash" outlined (onClick)="inativarCaminhao()" [disabled]="!caminhaoSelecionado" />
+      </ng-template>
+
+      <ng-template #end>
+
+      </ng-template>
+    </p-toolbar>
+
+    <p-table
+      #dt
+      [value]="caminhoes"
+      [paginator]="true"
+      [rows]="5"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      selectionMode="single"
+      [(selection)]="caminhaoSelecionado"
+      dataKey="id"
+      [tableStyle]="{ 'min-width': '75rem' }">
       <ng-template #header>
         <tr>
           <th>Placa</th>
