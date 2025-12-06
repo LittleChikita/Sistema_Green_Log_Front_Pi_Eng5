@@ -1,10 +1,13 @@
 import { Routes } from '@angular/router';
-import {CadastroUsuario} from './pages/cadastro-usuario/cadastro-usuario';
-import {CadastroMotorista} from './pages/cadastro-motorista/cadastro-motorista';
-import {CadastroCaminhao} from './pages/cadastro-caminhao/cadastro-caminhao';
-import {CadastroPontoDeColeta} from './pages/cadastro-ponto-de-coleta/cadastro-ponto-de-coleta';
-import {CadastroRua} from './pages/cadastro-rua/cadastro-rua';
-import {CadastroRota} from './pages/cadastro-rota/cadastro-rota';
+import {CadastroUsuario} from './pages/cadastro/cadastro-usuario/cadastro-usuario';
+import {CadastroMotorista} from './pages/cadastro/cadastro-motorista/cadastro-motorista';
+import {CadastroCaminhao} from './pages/cadastro/cadastro-caminhao/cadastro-caminhao';
+import {CadastroPontoDeColeta} from './pages/cadastro/cadastro-ponto-de-coleta/cadastro-ponto-de-coleta';
+import {CadastroRua} from './pages/cadastro/cadastro-rua/cadastro-rua';
+import {CadastroRota} from './pages/cadastro/cadastro-rota/cadastro-rota';
+import {Grafo} from './grafo/grafo';
+import {Itinerario} from './pages/itinerario/itinerario';
+import {Caminhao} from './pages/principal/caminhao/caminhao';
 
 export const routes: Routes = [
   {path: 'cadastro',
@@ -30,5 +33,17 @@ export const routes: Routes = [
   {path: 'cadastrorota',
     title: 'Cadastro Rota',
     component: CadastroRota
+  },
+  {path: 'grafo',
+    title: 'Grafo',
+    component: Grafo
+  },
+  {path: 'itinerario',
+    title: 'itinerario',
+    component: Itinerario
+  },
+  {path: 'caminhao',
+    title: 'Caminhões',
+    component: Caminhao
   }
 ];

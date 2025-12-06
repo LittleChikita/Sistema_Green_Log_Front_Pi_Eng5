@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { RotaService } from '../../services/rota-service';
+import { RotaService } from '../../../services/rota-service';
 
-import { TipoResiduo } from '../../models/TipoResiduo';
-import { BairroResponse } from '../../models/BairroResponse';
-import { PontoDeColetaResponse } from '../../models/PontoDeColetaResponse';
-import { RotaRequest } from '../../models/RotaRequest';
+import { TipoResiduo } from '../../../models/TipoResiduo';
+import { BairroResponse } from '../../../models/BairroResponse';
+import { PontoDeColetaResponse } from '../../../models/PontoDeColetaResponse';
+import { RotaRequest } from '../../../models/RotaRequest';
 
 import { Toast } from 'primeng/toast';
 import { ButtonDirective } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { Select } from 'primeng/select';
-import {CaminhaoResponse} from '../../models/CaminhaoResponse';
+import {CaminhaoResponse} from '../../../models/CaminhaoResponse';
 import {InputText} from 'primeng/inputtext';
 import {AutoComplete} from 'primeng/autocomplete';
 

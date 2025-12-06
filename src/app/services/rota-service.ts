@@ -7,6 +7,7 @@ import {RotaRequest} from '../models/RotaRequest';
 import {TipoResiduo} from '../models/TipoResiduo';
 import {BairroResponse} from '../models/BairroResponse';
 import {PontoDeColetaResponse} from '../models/PontoDeColetaResponse';
+import {CaminhaoResponse} from '../models/CaminhaoResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -32,13 +33,16 @@ export class RotaService {
     );
   }
 
-
   getBairros(): Observable<BairroResponse[]> {
     return this.http.get<BairroResponse[]>(`${environment.apiUrl}/bairros`);
   }
 
   getPontoColeta(): Observable<PontoDeColetaResponse[]> {
     return this.http.get<PontoDeColetaResponse[]>(`${environment.apiUrl}/pontos_coleta`);
+  }
+
+  getCaminhao(): Observable<CaminhaoResponse[]> {
+    return this.http.get<CaminhaoResponse[]>(`${environment.apiUrl}/caminhoes`);
   }
 
   calcularRota(bairrosSelecionados: number[]): Observable<any> {

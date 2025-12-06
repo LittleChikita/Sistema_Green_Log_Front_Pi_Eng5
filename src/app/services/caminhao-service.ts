@@ -26,6 +26,10 @@ export class CaminhaoService {
     return this.http.get<MotoristaResponse[]>(`${environment.apiUrl}/motoristas`);
   }
 
+  getCaminhao(): Observable<CaminhaoResponse[]> {
+    return this.http.get<CaminhaoResponse[]>(`${environment.apiUrl}/caminhoes`);
+  }
+
   criar(req: CaminhaoRequest): Observable<CaminhaoResponse>{
     return this.http.post<CaminhaoResponse>(this.baseUrl, req);
   }

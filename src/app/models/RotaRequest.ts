@@ -3,5 +3,5 @@ export interface RotaRequest{
   nome: string
   bairros: number[]
   arestas: number[]
-  tipoResiduo: string[]
+  tipoResiduo: string
 }

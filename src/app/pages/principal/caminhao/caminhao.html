@@ -1,0 +1,31 @@
+<p-toast></p-toast>
+
+<div>
+
+  <div>
+    <p-table [value]="caminhoes"
+             [paginator]="true"
+             [rows]="5"
+             [rowsPerPageOptions]="[5, 10, 20]"
+             selectionMode="single"
+             [(selection)]="caminhaoSelecionado"
+             dataKey="id"
+             [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template #header>
+        <tr>
+          <th>Placa</th>
+          <th>Motorista</th>
+          <th>Tipo de Residuo</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-caminhao>
+        <tr [pSelectableRow]="caminhao">
+          <td>{{caminhao.placa}}</td>
+          <td>{{caminhao.motorista.nome}}</td>
+          <td>{{caminhao.tiposResiduos}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+</div>

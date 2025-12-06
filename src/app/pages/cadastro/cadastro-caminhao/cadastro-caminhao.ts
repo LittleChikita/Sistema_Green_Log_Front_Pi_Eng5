@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {Toast} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
-import {CaminhaoRequest} from '../../models/CaminhaoRequest';
-import {CaminhaoService} from '../../services/caminhao-service';
+import {CaminhaoRequest} from '../../../models/CaminhaoRequest';
+import {CaminhaoService} from '../../../services/caminhao-service';
 import {ButtonDirective} from 'primeng/button';
 import {FormsModule} from '@angular/forms';
 import {InputText} from 'primeng/inputtext';
 import {Checkbox} from 'primeng/checkbox';
 import {AutoComplete} from 'primeng/autocomplete';
 import {NgForOf} from '@angular/common';
-import {TipoResiduo} from '../../models/TipoResiduo';
-import {MotoristaResponse} from '../../models/MotoristaResponse';
+import {TipoResiduo} from '../../../models/TipoResiduo';
+import {MotoristaResponse} from '../../../models/MotoristaResponse';
 
 @Component({
   selector: 'app-cadastro-caminhao',

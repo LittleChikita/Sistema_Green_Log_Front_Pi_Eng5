@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from 'primeng/api';
-import {PontoDeColetaService} from '../../services/ponto-de-coleta-service';
-import {PontoDeColetaRequest} from '../../models/PontoDeColetaRequest';
+import {PontoDeColetaService} from '../../../services/ponto-de-coleta-service';
+import {PontoDeColetaRequest} from '../../../models/PontoDeColetaRequest';
 import {Toast} from 'primeng/toast';
 import {ButtonDirective} from 'primeng/button';
 import {Checkbox} from 'primeng/checkbox';
 import {InputText} from 'primeng/inputtext';
 import {NgForOf} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {TipoResiduo} from '../../models/TipoResiduo';
+import {TipoResiduo} from '../../../models/TipoResiduo';
 import {AutoComplete} from 'primeng/autocomplete';
-import {BairroResponse} from '../../models/BairroResponse';
+import {BairroResponse} from '../../../models/BairroResponse';
 import {ClassNames} from 'primeng/classnames';
 
 @Component({

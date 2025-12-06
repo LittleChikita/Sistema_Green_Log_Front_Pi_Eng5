@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {MotoristaService} from '../../services/motorista-service';
-import {MotoristaRequest} from '../../models/MotoristaRequest';
+import {MotoristaService} from '../../../services/motorista-service';
+import {MotoristaRequest} from '../../../models/MotoristaRequest';
 import {Toast} from 'primeng/toast';
 import {ButtonDirective} from 'primeng/button';
 import {FormsModule} from '@angular/forms';

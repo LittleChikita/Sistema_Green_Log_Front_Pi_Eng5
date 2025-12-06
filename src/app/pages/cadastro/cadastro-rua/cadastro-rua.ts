@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from 'primeng/api';
-import {RuaService} from '../../services/rua-service';
-import {RuaRequest} from '../../models/RuaRequest';
-import {BairroResponse} from '../../models/BairroResponse';
+import {RuaService} from '../../../services/rua-service';
+import {RuaRequest} from '../../../models/RuaRequest';
+import {BairroResponse} from '../../../models/BairroResponse';
 import {Toast} from 'primeng/toast';
 import {AutoComplete} from 'primeng/autocomplete';
 import {ButtonDirective} from 'primeng/button';

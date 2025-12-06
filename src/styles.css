@@ -1,2 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+
 @import "primeicons/primeicons.css";
+
+.pi.caminhao-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: inline-block;
+  background-image: url('../icons/caminhao.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  mask: none !important;
+  -webkit-mask: none !important;
+}
