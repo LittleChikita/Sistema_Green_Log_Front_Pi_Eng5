@@ -1,5 +1,6 @@
 export interface RuaResponse{
-  id:number;
+  id:number
+  nome: string
   idBairroOrigem:number
   idBairroDestino:number
   distancia: number

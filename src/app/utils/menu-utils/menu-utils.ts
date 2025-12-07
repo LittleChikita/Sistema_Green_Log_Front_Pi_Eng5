@@ -11,7 +11,7 @@ import {Menubar} from 'primeng/menubar';
 })
 export class MenuUtils {
   items = [
-    { label: 'Início', icon: 'pi pi-home', routerLink: '/home' },
+    { label: 'Início', icon: 'pi pi-home', routerLink: '' },
     { label: 'Rotas', icon: 'pi pi-map', routerLink: '/rotas' },
     { label: 'Caminhões', icon: 'pi caminhao-icon', routerLink: '/caminhoes' },
   ];

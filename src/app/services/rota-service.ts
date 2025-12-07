@@ -8,6 +8,7 @@ import {TipoResiduo} from '../models/TipoResiduo';
 import {BairroResponse} from '../models/BairroResponse';
 import {PontoDeColetaResponse} from '../models/PontoDeColetaResponse';
 import {CaminhaoResponse} from '../models/CaminhaoResponse';
+import {RuaResponse} from '../models/RuaResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +38,10 @@ export class RotaService {
     return this.http.get<BairroResponse[]>(`${environment.apiUrl}/bairros`);
   }
 
+  getRuas(): Observable<RuaResponse[]> {
+    return this.http.get<RuaResponse[]>(`${environment.apiUrl}/ruas_conexao`);
+  }
+
   getPontoColeta(): Observable<PontoDeColetaResponse[]> {
     return this.http.get<PontoDeColetaResponse[]>(`${environment.apiUrl}/pontos_coleta`);
   }
@@ -47,6 +52,14 @@ export class RotaService {
 
   calcularRota(bairrosSelecionados: number[]): Observable<any> {
     return this.http.post<any>(`${environment.apiUrl}/auth/dijkstra/caminho_com_paradas`, bairrosSelecionados);
+  }
+
+  inativar(id: number): Observable<RotaResponse> {
+    return this.http.delete<RotaResponse>(`${this.baseUrl}/${id}`, {});
+  }
+
+  getRotas(): Observable<RotaResponse[]> {
+    return this.http.get<RotaResponse[]>(`${environment.apiUrl}/rotas`);
   }
 
   setCache(list: RotaResponse[]) { this._cache$.next(list); }

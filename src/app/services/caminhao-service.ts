@@ -11,7 +11,7 @@ import {MotoristaResponse} from '../models/MotoristaResponse';
   providedIn: 'root',
 })
 export class CaminhaoService {
-  private readonly baseUrl = `${environment.apiUrl}/cadastrarcaminhao`;
+  private readonly baseUrl = `${environment.apiUrl}/caminhoes`;
 
   loading = signal(false);
 
@@ -19,7 +19,7 @@ export class CaminhaoService {
   }
 
   getTiposResiduo(): Observable<TipoResiduo[]> {
-    return this.http.get<TipoResiduo[]>(`${environment.apiUrl}/cadastrarPontoColeta/tipos_residuo`);
+    return this.http.get<TipoResiduo[]>(`${environment.apiUrl}/pontos_coleta/tipos_residuo`);
   }
 
   getMotoristas(): Observable<MotoristaResponse[]> {
@@ -32,5 +32,9 @@ export class CaminhaoService {
 
   criar(req: CaminhaoRequest): Observable<CaminhaoResponse>{
     return this.http.post<CaminhaoResponse>(this.baseUrl, req);
+  }
+
+  inativar(id: number): Observable<CaminhaoResponse> {
+    return this.http.delete<CaminhaoResponse>(`${this.baseUrl}/${id}`, {});
   }
 }

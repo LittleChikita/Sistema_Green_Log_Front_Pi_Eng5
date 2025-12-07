@@ -8,6 +8,7 @@ import {CadastroRota} from './pages/cadastro/cadastro-rota/cadastro-rota';
 import {Grafo} from './grafo/grafo';
 import {Itinerario} from './pages/itinerario/itinerario';
 import {Caminhao} from './pages/principal/caminhao/caminhao';
+import {Rotas} from './pages/principal/rotas/rotas';
 
 export const routes: Routes = [
   {path: 'cadastro',
@@ -30,9 +31,9 @@ export const routes: Routes = [
     title: 'Cadastro Rua',
     component: CadastroRua
   },
-  {path: 'cadastrorota',
+  {path: 'rotas',
     title: 'Cadastro Rota',
-    component: CadastroRota
+    component: Rotas
   },
   {path: 'grafo',
     title: 'Grafo',
@@ -42,8 +43,12 @@ export const routes: Routes = [
     title: 'itinerario',
     component: Itinerario
   },
-  {path: 'caminhao',
+  {path: 'caminhoes',
     title: 'Caminhões',
     component: Caminhao
+  },
+  {path: 'rot',
+    title: 'Caminhões',
+    component: CadastroRota
   }
 ];

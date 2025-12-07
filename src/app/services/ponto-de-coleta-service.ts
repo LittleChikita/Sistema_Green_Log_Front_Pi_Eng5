@@ -14,7 +14,7 @@ import {BairroResponse} from '../models/BairroResponse';
 })
 export class PontoDeColetaService {
 
-  private readonly baseUrl = `${environment.apiUrl}/cadastrarPontoColeta`;
+  private readonly baseUrl = `${environment.apiUrl}/pontos_coleta`;
 
   loading = signal(false);
   private _cache$ = new BehaviorSubject<PontoDeColetaResponse[] | null>(null);

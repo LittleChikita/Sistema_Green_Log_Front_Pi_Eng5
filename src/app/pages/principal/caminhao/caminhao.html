@@ -6,7 +6,7 @@
     <p-toolbar class="mb-6">
       <ng-template #start>
         <p-button class="mr-2" label="New" icon="pi pi-plus" (onClick)="openNovo()">  </p-button>
-        <p-button severity="danger" label="Delete" icon="pi pi-trash" outlined (onClick)="inativarCaminhao()" [disabled]="!caminhaoSelecionado" />
+        <p-button severity="danger" label="Delete" icon="pi pi-trash" outlined (onClick)="deletarCaminhao(caminhaoSelecionado)" [disabled]="!caminhaoSelecionado" />
       </ng-template>
 
       <ng-template #end>
@@ -36,9 +36,62 @@
           <td>{{caminhao.placa}}</td>
           <td>{{caminhao.motorista.nome}}</td>
           <td>{{caminhao.tiposResiduos}}</td>
+          <td><p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editarCaminhao(caminhao)" />
+            <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" (click)="inativarCaminhao(caminhao)" /></td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 
+  <div>
+    <p-dialog [(visible)]="caminhaoDialog" [style]="{width: '450px'}" header="Caminhao Informações" [modal]="true"  [focusOnShow]="false">
+      <ng-template #content>
+        <div class ="flex flex-col gap-6">
+
+          <div>
+            <label for="placa" class="block font-bold mb-3">Placa</label>
+            <input type="text" pInputText id="placa" [(ngModel)]="caminhao.placa" required fluid/>
+            <small class="text-red-500" *ngIf="enviado && !caminhao.placa">Placa é Obrigatorio.</small>
+          </div>
+
+          <div>
+            <label class="block font-bold mb-3">Motorista</label>
+            <p-autocomplete
+              appendTo="body"
+              [(ngModel)]="motoristaSelecionado"
+              [suggestions]="motoristasFiltrados"
+              (completeMethod)="filtrarMotoristas($event)"
+              optionLabel="nome"
+              [dropdown]="true"
+              placeholder="Selecione um Motorista"
+              class="w-full">
+            </p-autocomplete>
+            <small class="text-red-500" *ngIf="enviado && !caminhao.motorista_id">Motorista é Obrigatorio.</small>
+          </div>
+
+          <div>
+            <label for="capacidade" class="block font-bold mb-3">Capacidade</label>
+            <input type="text" pInputText id="capacidade" [(ngModel)]="caminhao.capacidade" required fluid/>
+            <small class="text-red-500" *ngIf="enviado && !caminhao.capacidade">Placa é Obrigatorio.</small>
+          </div>
+
+          <div *ngFor="let r of tipos" class="flex align-items-center gap-2">
+            <p-checkbox
+              [value]="r"
+              [(ngModel)]="caminhao.tiposResiduos"
+              [inputId]="r.nome"
+            ></p-checkbox>
+            <label [for]="r">{{ r }}</label>
+          </div>
+
+        </div>
+      </ng-template>
+
+      <ng-template #footer>
+        <p-button label="Cancelar" icon="pi pi-times" text (click)="fecharDialog()" />
+        <p-button label="Cadastrar" icon="pi pi-check" (click)="cadastrar()" />
+      </ng-template>
+    </p-dialog>
+    <p-confirmDialog [style]="{ width: '450px' }" />
+  </div>
 </div>
