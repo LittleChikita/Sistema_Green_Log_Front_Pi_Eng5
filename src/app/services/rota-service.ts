@@ -55,11 +55,15 @@ export class RotaService {
   }
 
   inativar(id: number): Observable<RotaResponse> {
-    return this.http.delete<RotaResponse>(`${this.baseUrl}/${id}`, {});
+    return this.http.patch<RotaResponse>(`${this.baseUrl}/${id}/inativar`, {});
   }
 
   getRotas(): Observable<RotaResponse[]> {
     return this.http.get<RotaResponse[]>(`${environment.apiUrl}/rotas`);
+  }
+
+  atualizar(id: number, req: RotaRequest): Observable<RotaResponse> {
+    return this.http.put<RotaResponse>(`${this.baseUrl}/${id}`, req);
   }
 
   setCache(list: RotaResponse[]) { this._cache$.next(list); }

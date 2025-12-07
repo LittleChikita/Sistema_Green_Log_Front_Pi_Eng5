@@ -49,7 +49,7 @@
           </td>
           <td>{{rota.tiposResiduos}}</td>
           <td><p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editarRota(rota)" />
-            <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true" (click)="inativarRota(rota)" /></td>
+            <p-button icon="pi pi-ban" severity="danger" [rounded]="true" [outlined]="true" (click)="inativarRota(rota.id)" /></td>
         </tr>
       </ng-template>
     </p-table>
@@ -62,8 +62,8 @@
 
           <div>
             <label for="nome" class="block font-bold mb-3">Nome</label>
-            <input type="text" pInputText id="nome" [(ngModel)]="rota.nome" required fluid/>
-            <small class="text-red-500" *ngIf="enviado && !rota.nome">Nome é Obrigatorio.</small>
+            <input type="text" pInputText id="nome" [(ngModel)]="rotaForm.nome" required fluid/>
+            <small class="text-red-500" *ngIf="enviado && !rotaForm.nome">Nome é Obrigatorio.</small>
           </div>
 
           <div>
@@ -73,13 +73,13 @@
               [(ngModel)]="residuoSelecionado"
               [suggestions]="residuoFiltrados"
               (completeMethod)="filtrarResiduos($event)"
-              (onSelect)="tipoResiduo"
+              (onSelect)="selecionarResiduo($event)"
               optionLabel="nome"
               [dropdown]="true"
               placeholder="Selecione um Residuo"
               class="w-full">
             </p-autocomplete>
-            <small class="text-red-500" *ngIf="enviado && !rota.tipoResiduo">O Tipo de Residuo é Obrigatorio.</small>
+            <small class="text-red-500" *ngIf="enviado && !rotaForm.tipoResiduo">O Tipo de Residuo é Obrigatorio.</small>
           </div>
 
           <div>
@@ -94,7 +94,7 @@
               placeholder="Selecione um Caminhão"
               class="w-full">
             </p-autocomplete>
-            <small class="text-red-500" *ngIf="enviado && !rota.caminhaoId">O caminhão é Obrigatorio.</small>
+            <small class="text-red-500" *ngIf="enviado && !rotaForm.caminhaoId">O caminhão é Obrigatorio.</small>
           </div>
 
           <div *ngIf="residuoSelecionado">
@@ -127,24 +127,12 @@
               </ng-template>
             </p-table>
           </div>
-<!--
-
-
-         <div *ngFor="let r of tipos" class="flex align-items-center gap-2">
-            <p-checkbox
-              [value]="r"
-              [(ngModel)]="caminhao.tiposResiduos"
-              [inputId]="r.nome"
-            ></p-checkbox>
-            <label [for]="r">{{ r }}</label>
-          </div>
--->
         </div>
       </ng-template>
 
       <ng-template #footer>
         <p-button label="Cancelar" icon="pi pi-times" text (click)="fecharDialog()" />
-        <p-button label="Cadastrar" icon="pi pi-check" (click)="cadastrar()" />
+        <p-button label="Salvar" icon="pi pi-check" (click)="salvar()" />
       </ng-template>
     </p-dialog>
     <p-confirmDialog [style]="{ width: '450px' }" />
