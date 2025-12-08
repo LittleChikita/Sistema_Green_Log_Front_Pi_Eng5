@@ -2,6 +2,8 @@ import {RotaResponse} from './RotaResponse';
 import {CaminhaoResponse} from './CaminhaoResponse';
 
 export interface ItinerarioResponse{
+  id:number
   rota: RotaResponse
-  caminhao: CaminhaoResponse
+  dia: string
+  ativo: boolean
 }

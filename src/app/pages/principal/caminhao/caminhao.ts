@@ -148,7 +148,7 @@ export class Caminhao implements OnInit{
         label: 'Sim'
       },
       accept: () => {
-        this.service.inativar(c.id).subscribe({
+        this.service.deletar(c.id).subscribe({
           next: () => {
             this.caminhoes = this.caminhoes.filter(x => x.id !== c.id);
 
@@ -172,8 +172,43 @@ export class Caminhao implements OnInit{
     })
   }
 
-  inativarCaminhao(caminhao: CaminhaoRequest){
+  inativarCaminhao(c: CaminhaoResponse){
+    this.confirmationService.confirm({
+      message: 'Você tem certeza que deseja Inativar o caminhão? ' + c.placa + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      rejectButtonProps: {
+        label: 'Não',
+        severity: 'secondary',
+        variant: 'text'
+      },
+      acceptButtonProps: {
+        severity: 'danger',
+        label: 'Sim'
+      },
+      accept: () => {
+        this.service.inativar(c.id).subscribe({
+          next: () => {
+            this.caminhoes = this.caminhoes.filter(x => x.id !== c.id);
 
+            this.msg.add({
+              severity: 'success',
+              summary: 'Sucesso',
+              detail: 'Caminhão inativado!',
+              life: 3000
+            });
+          },
+          error: () => {
+            this.msg.add({
+              severity: 'error',
+              summary: 'Erro',
+              detail: 'Falha ao inativado o caminhão.',
+              life: 3000
+            });
+          }
+        });
+      }
+    })
   }
 
   editarCaminhao(caminhao: CaminhaoRequest){

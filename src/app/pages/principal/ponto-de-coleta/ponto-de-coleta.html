@@ -1,0 +1,125 @@
+<p-toast></p-toast>
+
+<div>
+  <div>
+    <p-toolbar class="mb-6">
+      <ng-template #start>
+        <p-button class="mr-2" label="New" icon="pi pi-plus" (onClick)="openNovo()">  </p-button>
+        <p-button severity="danger" label="Delete" icon="pi pi-trash" outlined (onClick)="deletarPonto(pontoDeColetaSelecionado)" [disabled]="!pontoDeColetaSelecionado" />
+      </ng-template>
+
+      <ng-template #end>
+
+      </ng-template>
+    </p-toolbar>
+
+    <p-table
+      #dt
+      [value]="pontosDeColeta"
+      [paginator]="true"
+      [rows]="5"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      selectionMode="single"
+      [(selection)]="pontoDeColetaSelecionado"
+      dataKey="id"
+      [tableStyle]="{ 'min-width': '75rem' }">
+      <ng-template #header>
+        <tr>
+          <th>Nome</th>
+          <th>Bairro</th>
+          <th>Responsavel</th>
+          <th>Telefone</th>
+          <th>Email</th>
+          <th>Endereço</th>
+          <th>Tipos De Resíduos</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-ponto>
+        <tr [pSelectableRow]="ponto">
+          <td>{{ponto.nome}}</td>
+          <td>{{ponto.bairro.nome}}</td>
+          <td>{{ponto.responsavel}}</td>
+          <td>{{ponto.telefoneResponsavel}}</td>
+          <td>{{ponto.emailResponsavel}}</td>
+          <td>{{ponto.endereco}}</td>
+          <td>{{ponto.tiposResiduos}}</td>
+          <td><p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editarPonto(ponto)" />
+            <p-button icon="pi pi-ban" severity="danger" [rounded]="true" [outlined]="true" (click)="inativarPonto(ponto.id)" /></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div>
+    <p-dialog [(visible)]="pontoDialog" [style]="{width: '450px'}" header="Ponto de Coleta Informações" [modal]="true"  [focusOnShow]="false">
+      <ng-template #content>
+        <div class ="flex flex-col gap-6">
+
+          <div>
+            <label for="nome" class="block font-bold mb-3">Nome</label>
+            <input type="text" pInputText id="nome" [(ngModel)]="pontoDeColetaForm.nome" required fluid/>
+            <small class="text-red-500" *ngIf="enviado && !pontoDeColetaForm.nome">Nome é Obrigatorio.</small>
+          </div>
+
+          <div>
+            <label for="responsavel" class="block font-bold mb-3">Nome Do Responsavel</label>
+            <input type="text" pInputText id="responsavel" [(ngModel)]="pontoDeColetaForm.responsavel" required fluid/>
+            <small class="text-red-500" *ngIf="enviado && !pontoDeColetaForm.responsavel">Responsavel é Obrigatorio.</small>
+          </div>
+
+          <div>
+            <label for="telefoneResponsavel" class="block font-bold mb-3">Telefone do Responsavel</label>
+            <input type="text" pInputText id="telefoneResponsavel" [(ngModel)]="pontoDeColetaForm.telefoneResponsavel" required fluid/>
+            <small class="text-red-500" *ngIf="enviado && !pontoDeColetaForm.telefoneResponsavel">Telefone do Responsavel é Obrigatorio.</small>
+          </div>
+
+          <div>
+            <label for="emailResponsavel" class="block font-bold mb-3">Email do Responsavel</label>
+            <input type="text" pInputText id="emailResponsavel" [(ngModel)]="pontoDeColetaForm.emailResponsavel" required fluid/>
+            <small class="text-red-500" *ngIf="enviado && !pontoDeColetaForm.emailResponsavel">Email do Responsavel é Obrigatorio.</small>
+          </div>
+
+          <div>
+            <label for="endereco" class="block font-bold mb-3">Endereço</label>
+            <input type="text" pInputText id="endereco" [(ngModel)]="pontoDeColetaForm.endereco" required fluid/>
+            <small class="text-red-500" *ngIf="enviado && !pontoDeColetaForm.endereco">Endereço é Obrigatorio.</small>
+          </div>
+
+          <div>
+            <label class="block font-bold mb-3">Escolha o(s) tipo(s) de resíduo(s)</label>
+            <div *ngFor="let r of tipos" class="flex align-items-center gap-2">
+              <p-checkbox
+                [value]="r"
+                [(ngModel)]="pontoDeColetaForm.tiposResiduos"
+                [inputId]="r.nome"
+              ></p-checkbox>
+              <label [for]="r">{{ r }}</label>
+            <small class="text-red-500" *ngIf="enviado && !pontoDeColetaForm.tiposResiduos">O Tipo de Residuo é Obrigatorio.</small>
+          </div>
+          </div>
+          <div>
+            <label class="block font-bold mb-3">Escolha o Bairro</label>
+            <p-autocomplete
+              appendTo="body"
+              [(ngModel)]="bairroSelecionado"
+              [suggestions]="bairroFiltrados"
+              (completeMethod)="filtrarBairros($event)"
+              (onSelect)="selecionarBairro($event)"
+              optionLabel="nome"
+              [dropdown]="true"
+              placeholder="Selecione um Bairro"
+              class="w-full">
+            </p-autocomplete>
+            <small class="text-red-500" *ngIf="enviado && !pontoDeColetaForm.bairroId">O Bairro é Obrigatorio.</small>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template #footer>
+        <p-button label="Cancelar" icon="pi pi-times" text (click)="fecharDialog()" />
+        <p-button label="Salvar" icon="pi pi-check" (click)="salvar()" />
+      </ng-template>
+    </p-dialog>
+    <p-confirmDialog [style]="{ width: '450px' }" />
+  </div>
+</div>

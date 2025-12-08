@@ -21,5 +21,19 @@ export class MotoristaService {
     return this.http.post<MotoristaResponse>(this.baseUrl, req);
   }
 
+  atualizar(id: number, req: MotoristaRequest): Observable<MotoristaResponse> {
+    return this.http.put<MotoristaResponse>(`${this.baseUrl}/${id}`, req);
+  }
 
+  getMotoristas(): Observable<MotoristaResponse[]> {
+    return this.http.get<MotoristaResponse[]>(`${environment.apiUrl}/motoristas`);
+  }
+
+  inativar(id: number): Observable<MotoristaResponse> {
+    return this.http.patch<MotoristaResponse>(`${this.baseUrl}/status/${id}`, {});
+  }
+
+  deletar(id: number): Observable<MotoristaResponse> {
+    return this.http.delete<MotoristaResponse>(`${this.baseUrl}/${id}`, {});
+  }
 }

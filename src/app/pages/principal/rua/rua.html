@@ -1,0 +1,101 @@
+<p-toast></p-toast>
+
+<div>
+
+  <div>
+    <p-toolbar class="mb-6">
+      <ng-template #start>
+        <p-button class="mr-2" label="New" icon="pi pi-plus" (onClick)="openNovo()">  </p-button>
+        <p-button severity="danger" label="Delete" icon="pi pi-trash" outlined (onClick)="deletarRua(ruaSelecionada)" [disabled]="!ruaSelecionada" />
+      </ng-template>
+
+      <ng-template #end>
+
+      </ng-template>
+    </p-toolbar>
+
+    <p-table
+      #dt
+      [value]="ruas"
+      [paginator]="true"
+      [rows]="5"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      selectionMode="single"
+      [(selection)]="ruaSelecionada"
+      dataKey="id"
+      [tableStyle]="{ 'min-width': '75rem' }">
+      <ng-template #header>
+        <tr>
+          <th>Nome</th>
+          <th>Bairro de Origem</th>
+          <th>Bairro de Destino</th>
+          <th>Distancia</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-rua>
+        <tr [pSelectableRow]="rua">
+          <td>{{rua.nome}}</td>
+          <td>{{ getNomeBairro(rua.origemId) }}</td>
+          <td>{{ getNomeBairro(rua.destinoId) }}</td>
+          <td>{{rua.distancia}}</td>
+          <td><p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editarRua(rua)" />
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div>
+    <p-dialog [(visible)]="ruaDialog" [style]="{width: '450px'}" header="Bairro Informações" [modal]="true"  [focusOnShow]="false">
+      <ng-template #content>
+        <div class ="flex flex-col gap-6">
+          <div>
+            <label for="nome" class="block font-bold mb-3">Nome</label>
+            <input type="text" pInputText id="nome" [(ngModel)]="ruaForm.nome" required fluid/>
+            <small class="text-red-500" *ngIf="enviado && !ruaForm.nome">Nome é Obrigatorio.</small>
+          </div>
+          <div>
+            <label class="block font-bold mb-3">Origem</label>
+            <p-autocomplete
+              appendTo="body"
+              [(ngModel)]="bairroOrigemSelecionado"
+              [suggestions]="bairrosOrigemFiltrados"
+              (completeMethod)="filtrarBairrosOrigem($event)"
+              (onSelect)="onSelectBairroOrigem($event)"
+              optionLabel="nome"
+              [dropdown]="true"
+              placeholder="Selecione um Bairro De Origem"
+              class="w-full">
+            </p-autocomplete>
+            <small class="text-red-500" *ngIf="enviado && !ruaForm.origemId">Bairro de Origem é Obrigatorio.</small>
+          </div>
+          <div>
+            <label class="block font-bold mb-3">Destino</label>
+            <p-autocomplete
+              appendTo="body"
+              [(ngModel)]="bairroDestinoSelecionado"
+              [suggestions]="bairroDestinoFiltrados"
+              (completeMethod)="filtrarBairrosDestino($event)"
+              (onSelect)="onSelectBairroDestino($event)"
+              optionLabel="nome"
+              [dropdown]="true"
+              placeholder="Selecione um Bairro de Destino"
+              class="w-full">
+            </p-autocomplete>
+            <small class="text-red-500" *ngIf="enviado && !ruaForm.destinoId">Bairro de Destino é Obrigatorio.</small>
+          </div>
+          <div>
+            <label for="distancia" class="block font-bold mb-3">Distancia</label>
+            <input type="number" pInputText id="distancia" [(ngModel)]="ruaForm.distancia" required min="0" step="any" fluid/>
+            <small class="text-red-500" *ngIf="enviado && !ruaForm.distancia">Distancia é Obrigatorio.</small>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template #footer>
+        <p-button label="Cancelar" icon="pi pi-times" text (click)="fecharDialog()" />
+        <p-button label="Salvar" icon="pi pi-check" (click)="salvar()" />
+      </ng-template>
+    </p-dialog>
+    <p-confirmDialog [style]="{ width: '450px' }" />
+  </div>
+</div>

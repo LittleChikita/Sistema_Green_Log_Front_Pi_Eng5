@@ -19,7 +19,7 @@ export class CaminhaoService {
   }
 
   getTiposResiduo(): Observable<TipoResiduo[]> {
-    return this.http.get<TipoResiduo[]>(`${environment.apiUrl}/pontos_coleta/tipos_residuo`);
+    return this.http.get<TipoResiduo[]>(`${environment.apiUrl}/pontos-coleta/tipos_residuo`);
   }
 
   getMotoristas(): Observable<MotoristaResponse[]> {
@@ -35,6 +35,10 @@ export class CaminhaoService {
   }
 
   inativar(id: number): Observable<CaminhaoResponse> {
+    return this.http.delete<CaminhaoResponse>(`${this.baseUrl}/${id}`, {});
+  }
+
+  deletar(id: number): Observable<CaminhaoResponse> {
     return this.http.delete<CaminhaoResponse>(`${this.baseUrl}/${id}`, {});
   }
 }

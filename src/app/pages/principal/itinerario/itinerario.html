@@ -1,0 +1,56 @@
+<p-toast></p-toast>
+
+<h2>Calendário de Itinerários</h2>
+
+<p-toolbar class="mb-6">
+  <ng-template #start>
+    <p-button class="mr-2" label="New" icon="pi pi-plus" (onClick)="openNovo()">  </p-button>
+    <p-button severity="danger" label="Delete" icon="pi pi-trash"
+              outlined (onClick)="deletarItinerario()" [disabled]="!itinerarioSelecionado" />
+  </ng-template>
+</p-toolbar>
+
+<full-calendar
+  [options]="calendarOptions"></full-calendar>
+
+<p-dialog [(visible)]="itinerarioDialog" [style]="{width: '450px'}"
+          header="Novo Itinerário" [modal]="true" [focusOnShow]="false">
+
+  <ng-template #content>
+    <div class ="flex flex-col gap-6">
+
+      <div>
+        <label class="block font-bold mb-3">Escolha a Rota</label>
+
+        <p-autocomplete
+          appendTo="body"
+          [(ngModel)]="rotaSelecionada"
+          [suggestions]="rotasFiltradas"
+          (completeMethod)="filtrarRotas($event)"
+          (onSelect)="onSelectRota($event)"
+          optionLabel="nome"
+          [dropdown]="true"
+          placeholder="Selecione uma Rota"
+          class="w-full">
+        </p-autocomplete>
+
+        <small class="text-red-500" *ngIf="enviado && !itinerarioForm.rotaId">
+          Rota é obrigatória.
+        </small>
+      </div>
+
+      <div>
+        <strong>Data selecionada:</strong> {{ dataSelecionada | date:'dd/MM/yyyy' }}
+      </div>
+
+    </div>
+  </ng-template>
+
+  <ng-template #footer>
+    <p-button label="Cancelar" icon="pi pi-times" text (click)="fecharDialog()" />
+    <p-button label="Salvar" icon="pi pi-check" (click)="salvar()" />
+  </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }" />

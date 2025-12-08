@@ -7,4 +7,5 @@ export interface RotaResponse{
   bairros: number[]
   arestas: number[]
   tiposResiduos: string
+  ativo: boolean
 }

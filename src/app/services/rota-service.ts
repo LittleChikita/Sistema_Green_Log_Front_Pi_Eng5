@@ -39,11 +39,11 @@ export class RotaService {
   }
 
   getRuas(): Observable<RuaResponse[]> {
-    return this.http.get<RuaResponse[]>(`${environment.apiUrl}/ruas_conexao`);
+    return this.http.get<RuaResponse[]>(`${environment.apiUrl}/ruas-conexao`);
   }
 
   getPontoColeta(): Observable<PontoDeColetaResponse[]> {
-    return this.http.get<PontoDeColetaResponse[]>(`${environment.apiUrl}/pontos_coleta`);
+    return this.http.get<PontoDeColetaResponse[]>(`${environment.apiUrl}/pontos-coleta`);
   }
 
   getCaminhao(): Observable<CaminhaoResponse[]> {
@@ -55,15 +55,21 @@ export class RotaService {
   }
 
   inativar(id: number): Observable<RotaResponse> {
-    return this.http.patch<RotaResponse>(`${this.baseUrl}/${id}/inativar`, {});
+    return this.http.patch<RotaResponse>(`${this.baseUrl}/status/${id}`, {});
   }
 
-  getRotas(): Observable<RotaResponse[]> {
-    return this.http.get<RotaResponse[]>(`${environment.apiUrl}/rotas`);
+  getRotas(status: boolean): Observable<RotaResponse[]> {
+    return this.http.get<RotaResponse[]>(`${environment.apiUrl}/rotas/Status`, {
+      params: { status }
+    });
   }
 
   atualizar(id: number, req: RotaRequest): Observable<RotaResponse> {
     return this.http.put<RotaResponse>(`${this.baseUrl}/${id}`, req);
+  }
+
+  deletar(id: number): Observable<RotaResponse> {
+    return this.http.delete<RotaResponse>(`${this.baseUrl}/${id}`, {});
   }
 
   setCache(list: RotaResponse[]) { this._cache$.next(list); }

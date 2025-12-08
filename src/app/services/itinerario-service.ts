@@ -27,6 +27,14 @@ export class ItinerarioService {
     return this.http.post<ItinerarioResponse>(this.baseUrl, req);
   }
 
+  atualizar(id: number, req: ItinerarioRequest): Observable<ItinerarioResponse> {
+    return this.http.put<ItinerarioResponse>(`${this.baseUrl}/${id}`, req);
+  }
+
+  deletar(id: number): Observable<ItinerarioResponse> {
+    return this.http.delete<ItinerarioResponse>(`${this.baseUrl}/${id}`, {});
+  }
+
   getCaminhao(): Observable<CaminhaoResponse[]> {
     return this.http.get<CaminhaoResponse[]>(`${environment.apiUrl}/caminhoes`);
   }
@@ -37,6 +45,10 @@ export class ItinerarioService {
 
   getRotas(): Observable<RotaResponse[]> {
     return this.http.get<RotaResponse[]>(`${environment.apiUrl}/rotas`);
+  }
+
+  getItinerarios(): Observable<ItinerarioResponse[]> {
+    return this.http.get<ItinerarioResponse[]>(`${environment.apiUrl}/itinerarios`);
   }
 
   setCache(list: ItinerarioResponse[]) { this._cache$.next(list); }

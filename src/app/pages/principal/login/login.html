@@ -1,0 +1,31 @@
+<p-toast></p-toast>
+<div class="login-container">
+  <form [formGroup]="form" (ngSubmit)="login()">
+
+    <h2>Login</h2>
+
+    <label>Email</label>
+    <input
+      type="email"
+      pInputText
+      formControlName="email"
+      placeholder="Digite seu e-mail"
+    />
+
+    <label>Senha</label>
+    <p-password
+      formControlName="senha"
+      [feedback]="false"
+      placeholder="Digite sua senha"
+    ></p-password>
+
+    <button
+      pButton
+      type="submit"
+      label="{{ loading ? 'Entrando...' : 'Entrar' }}"
+      [disabled]="loading || form.invalid"
+      style="width: 100%; margin-top: 1rem;"
+    ></button>
+
+  </form>
+</div>

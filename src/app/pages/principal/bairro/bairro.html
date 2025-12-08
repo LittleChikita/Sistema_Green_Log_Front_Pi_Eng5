@@ -1,0 +1,60 @@
+<p-toast></p-toast>
+
+<div>
+
+  <div>
+    <p-toolbar class="mb-6">
+      <ng-template #start>
+        <p-button class="mr-2" label="New" icon="pi pi-plus" (onClick)="openNovo()">  </p-button>
+        <p-button severity="danger" label="Delete" icon="pi pi-trash" outlined (onClick)="deletarBairro(bairroSelecionado)" [disabled]="!bairroSelecionado" />
+      </ng-template>
+
+      <ng-template #end>
+
+      </ng-template>
+    </p-toolbar>
+
+    <p-table
+      #dt
+      [value]="bairros"
+      [paginator]="true"
+      [rows]="5"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      selectionMode="single"
+      [(selection)]="bairroSelecionado"
+      dataKey="id"
+      [tableStyle]="{ 'min-width': '75rem' }">
+      <ng-template #header>
+        <tr>
+          <th>Nome</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-bairro>
+        <tr [pSelectableRow]="bairro">
+          <td>{{bairro.nome}}</td>
+          <td><p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" (click)="editarBairro(bairro)" />
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div>
+    <p-dialog [(visible)]="bairroDialog" [style]="{width: '450px'}" header="Bairro Informações" [modal]="true"  [focusOnShow]="false">
+      <ng-template #content>
+        <div class ="flex flex-col gap-6">
+          <div>
+            <label for="nome" class="block font-bold mb-3">Nome</label>
+            <input type="text" pInputText id="nome" [(ngModel)]="bairroForm.nome" required fluid/>
+            <small class="text-red-500" *ngIf="enviado && !bairroForm.nome">Nome é Obrigatorio.</small>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template #footer>
+        <p-button label="Cancelar" icon="pi pi-times" text (click)="fecharDialog()" />
+        <p-button label="Salvar" icon="pi pi-check" (click)="salvar()" />
+      </ng-template>
+    </p-dialog>
+    <p-confirmDialog [style]="{ width: '450px' }" />
+  </div>
+</div>

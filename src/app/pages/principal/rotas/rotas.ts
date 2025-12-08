@@ -113,7 +113,7 @@ export class Rotas implements OnInit{
       this.tipos = lista;
     })
 
-    this.service.getRotas().subscribe({
+    this.service.getRotas(true).subscribe({
       next: (rot) => {
         this.rotas = rot;
         console.log("Rotas recebidos:", rot);

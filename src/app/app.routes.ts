@@ -1,54 +1,65 @@
 import { Routes } from '@angular/router';
-import {CadastroUsuario} from './pages/cadastro/cadastro-usuario/cadastro-usuario';
-import {CadastroMotorista} from './pages/cadastro/cadastro-motorista/cadastro-motorista';
-import {CadastroCaminhao} from './pages/cadastro/cadastro-caminhao/cadastro-caminhao';
-import {CadastroPontoDeColeta} from './pages/cadastro/cadastro-ponto-de-coleta/cadastro-ponto-de-coleta';
-import {CadastroRua} from './pages/cadastro/cadastro-rua/cadastro-rua';
-import {CadastroRota} from './pages/cadastro/cadastro-rota/cadastro-rota';
 import {Grafo} from './grafo/grafo';
-import {Itinerario} from './pages/itinerario/itinerario';
+import {Itinerario} from './pages/principal/itinerario/itinerario';
 import {Caminhao} from './pages/principal/caminhao/caminhao';
 import {Rotas} from './pages/principal/rotas/rotas';
+import {Motorista} from './pages/principal/motorista/motorista';
+import {Bairro} from './pages/principal/bairro/bairro';
+import {Rua} from './pages/principal/rua/rua';
+import {PontoDeColeta} from './pages/principal/ponto-de-coleta/ponto-de-coleta';
+import {Usuario} from './pages/principal/usuario/usuario';
+import {Login} from './pages/principal/login/login';
+import {authGuard} from './auth/auth-guard';
+import {Home} from './pages/principal/home/home';
 
 export const routes: Routes = [
-  {path: 'cadastro',
-  title: 'Cadastro Usuario',
-    component: CadastroUsuario
+  {path: 'usuarios',
+  title: 'Usuarios',
+    component: Usuario,
+    canActivate: [authGuard]
   },
-  {path: 'cadastromotorista',
+  {path: 'motoristas',
     title: 'Cadastro Motorista',
-    component: CadastroMotorista
+    component: Motorista,
+    canActivate: [authGuard]
   },
-  {path: 'cadastrocaminhao',
-    title: 'Cadastro Caminhao',
-    component: CadastroCaminhao
+  {path: 'pontosdecoleta',
+    title: 'Pontos de Coleta',
+    component: PontoDeColeta,
+    canActivate: [authGuard]
   },
-  {path: 'cadastropontocoleta',
-    title: 'Cadastro Ponto de Coleta',
-    component: CadastroPontoDeColeta
+  {path: 'home',
+    title: 'Inicio',
+    component: Home,
+    canActivate: [authGuard]
   },
-  {path: 'cadastrorua',
-    title: 'Cadastro Rua',
-    component: CadastroRua
+  {path: 'ruas',
+    title: 'Ruas',
+    component: Rua,
+    canActivate: [authGuard]
   },
   {path: 'rotas',
     title: 'Cadastro Rota',
-    component: Rotas
+    component: Rotas,
+    canActivate: [authGuard]
   },
-  {path: 'grafo',
-    title: 'Grafo',
-    component: Grafo
-  },
-  {path: 'itinerario',
+  {path: 'itinerarios',
     title: 'itinerario',
-    component: Itinerario
+    component: Itinerario,
+    canActivate: [authGuard]
   },
   {path: 'caminhoes',
     title: 'Caminhões',
-    component: Caminhao
+    component: Caminhao,
+    canActivate: [authGuard]
   },
-  {path: 'rot',
-    title: 'Caminhões',
-    component: CadastroRota
+  {path: 'bairros',
+    title: 'Bairros',
+    component: Bairro,
+    canActivate: [authGuard]
+  },
+  {path: 'login',
+    title: 'Login',
+    component: Login
   }
 ];
