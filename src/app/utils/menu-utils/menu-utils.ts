@@ -19,6 +19,6 @@ export class MenuUtils {
     { label: 'Bairros', icon: 'pi pi-warehouse', routerLink: '/bairros' },
     { label: 'Ruas', icon: 'pi pi-arrow-circle-up', routerLink: '/ruas' },
     { label: 'Pontos de Coleta', icon: 'pi pi-flag', routerLink: '/pontosdecoleta' },
-    { label: 'Pontos de Coleta', icon: 'pi pi-flag', routerLink: '/itinerarios' },
+    { label: 'Pontos de Coleta', icon: 'pi pi-calendar', routerLink: '/itinerarios' },
   ];
 }

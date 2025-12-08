@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import {Grafo} from './grafo/grafo';
 import {Itinerario} from './pages/principal/itinerario/itinerario';
 import {Caminhao} from './pages/principal/caminhao/caminhao';
 import {Rotas} from './pages/principal/rotas/rotas';
