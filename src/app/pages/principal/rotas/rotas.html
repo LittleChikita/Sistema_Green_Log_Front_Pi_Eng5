@@ -25,11 +25,31 @@
       [tableStyle]="{ 'min-width': '75rem' }">
       <ng-template #header>
         <tr>
-          <th>Nome</th>
-          <th>Caminhão</th>
-          <th>Bairros</th>
-          <th>Ruas</th>
-          <th>Tipo de Residuo</th>
+          <th pSortableColumn="nome">
+            Nome
+            <p-sortIcon field="nome"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="caminhao">
+            Caminhão
+            <p-sortIcon field="caminhao"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="bairros">
+            Bairros
+            <p-sortIcon field="bairros"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="ruas">
+            Ruas
+            <p-sortIcon field="ruas"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="tipoResiduo">
+            Tipo de Resíduo
+            <p-sortIcon field="tipoResiduo"></p-sortIcon>
+          </th>
+
         </tr>
       </ng-template>
       <ng-template #body let-rota>

@@ -40,7 +40,7 @@ export class Home implements AfterViewInit{
         id: e.id,
         from: e.origemId,
         to: e.destinoId,
-        label: String(e.distancia),
+        label: String(e.nome),
         arrows: "to",
         color: "#1450db",
         font: { align: "middle" }

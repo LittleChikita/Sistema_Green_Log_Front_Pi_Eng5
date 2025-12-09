@@ -35,10 +35,16 @@
 
       <ng-template pTemplate="header">
         <tr>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>Ações</th>
-        </tr>
+          <th pSortableColumn="nome">
+            Nome
+            <p-sortIcon field="nome"></p-sortIcon>
+          </th>
+          <th pSortableColumn="email">
+            Email
+            <p-sortIcon field="email"></p-sortIcon>
+          </th><th pSortableColumn="email">
+          Email
+          <p-sortIcon field="email"></p-sortIcon>
       </ng-template>
 
       <ng-template pTemplate="body" let-usuario>

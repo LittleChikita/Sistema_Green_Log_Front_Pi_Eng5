@@ -26,8 +26,15 @@
       [tableStyle]="{ 'min-width': '75rem' }">
       <ng-template #header>
         <tr>
-          <th>Nome</th>
-          <th>Cpf</th>
+          <th pSortableColumn="nome">
+            Nome
+            <p-sortIcon field="nome"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="cpf">
+            Cpf
+            <p-sortIcon field="cpf"></p-sortIcon>
+          </th>
         </tr>
       </ng-template>
       <ng-template #body let-motorista>
