@@ -26,9 +26,21 @@
       [tableStyle]="{ 'min-width': '75rem' }">
       <ng-template #header>
         <tr>
-          <th>Placa</th>
-          <th>Motorista</th>
-          <th>Tipo de Residuo</th>
+          <th pSortableColumn="placa">
+            Placa
+            <p-sortIcon field="placa"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="motorista.nome">
+            Motorista
+            <p-sortIcon field="motorista.nome"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="tiposResiduos">
+            Tipos de Resíduos
+            <p-sortIcon field="tiposResiduos"></p-sortIcon>
+          </th>
+
         </tr>
       </ng-template>
       <ng-template #body let-caminhao>

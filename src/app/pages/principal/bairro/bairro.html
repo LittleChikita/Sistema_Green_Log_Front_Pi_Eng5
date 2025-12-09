@@ -26,7 +26,10 @@
       [tableStyle]="{ 'min-width': '75rem' }">
       <ng-template #header>
         <tr>
-          <th>Nome</th>
+          <th pSortableColumn="nome">
+            Nome
+            <p-sortIcon field="nome"></p-sortIcon>
+          </th>
         </tr>
       </ng-template>
       <ng-template #body let-bairro>

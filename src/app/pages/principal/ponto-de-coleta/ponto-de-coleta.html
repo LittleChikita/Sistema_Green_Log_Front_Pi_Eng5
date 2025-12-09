@@ -25,13 +25,41 @@
       [tableStyle]="{ 'min-width': '75rem' }">
       <ng-template #header>
         <tr>
-          <th>Nome</th>
-          <th>Bairro</th>
-          <th>Responsavel</th>
-          <th>Telefone</th>
-          <th>Email</th>
-          <th>Endereço</th>
-          <th>Tipos De Resíduos</th>
+          <th pSortableColumn="nome">
+            Nome
+            <p-sortIcon field="nome"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="bairro">
+            Bairro
+            <p-sortIcon field="bairro"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="responsavel">
+            Responsável
+            <p-sortIcon field="responsavel"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="telefone">
+            Telefone
+            <p-sortIcon field="telefone"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="email">
+            Email
+            <p-sortIcon field="email"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="endereco">
+            Endereço
+            <p-sortIcon field="endereco"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="tiposDeResiduos">
+            Tipos De Resíduos
+            <p-sortIcon field="tiposDeResiduos"></p-sortIcon>
+          </th>
+
         </tr>
       </ng-template>
       <ng-template #body let-ponto>

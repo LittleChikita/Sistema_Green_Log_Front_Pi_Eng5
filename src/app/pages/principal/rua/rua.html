@@ -26,10 +26,22 @@
       [tableStyle]="{ 'min-width': '75rem' }">
       <ng-template #header>
         <tr>
-          <th>Nome</th>
-          <th>Bairro de Origem</th>
-          <th>Bairro de Destino</th>
-          <th>Distancia</th>
+          <th pSortableColumn="nome">
+            Nome
+            <p-sortIcon field="nome"></p-sortIcon>
+          </th>
+          <th pSortableColumn="bairroOrigem">
+            Bairro de Origem
+            <p-sortIcon field="bairroOrigem"></p-sortIcon>
+          </th>
+          <th pSortableColumn="bairroDestino">
+            Bairro de Destino
+            <p-sortIcon field="bairroDestino"></p-sortIcon>
+          </th>
+          <th pSortableColumn="distancia">
+            Distancia
+            <p-sortIcon field="distancia"></p-sortIcon>
+          </th>
         </tr>
       </ng-template>
       <ng-template #body let-rua>

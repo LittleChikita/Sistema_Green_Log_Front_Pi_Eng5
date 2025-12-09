@@ -1,15 +1,23 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Menubar} from 'primeng/menubar';
+import {AuthService} from '../../services/auth-service';
+import {ButtonDirective} from 'primeng/button';
+import {PrimeTemplate} from 'primeng/api';
 
 @Component({
   selector: 'app-menu-utils',
   imports: [
-    Menubar
+    Menubar,
+    ButtonDirective,
+    PrimeTemplate
   ],
   templateUrl: './menu-utils.html',
   styleUrl: './menu-utils.css',
 })
 export class MenuUtils {
+
+  private auth = inject(AuthService);
+
   items = [
     { label: 'Início', icon: 'pi pi-home', routerLink: '/home' },
     { label: 'Usuários', icon: 'pi pi-users', routerLink: '/usuarios' },
@@ -21,4 +29,9 @@ export class MenuUtils {
     { label: 'Pontos de Coleta', icon: 'pi pi-flag', routerLink: '/pontosdecoleta' },
     { label: 'Pontos de Coleta', icon: 'pi pi-calendar', routerLink: '/itinerarios' },
   ];
+
+  logout() {
+    this.auth.logout();
+  }
+
 }
